@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context=".ui.home.HomeFragment">
+
+    <ProgressBar
+        android:id="@+id/load_indic"
+        android:layout_width="64.dp"
+        android:elevation="10dp"
+        android:layout_height="64.dp"
+        android:progressTint="@color/brand_green"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16.dp"
+        android:layout_marginTop="16dp"
+
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="64.dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="30.dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24.dp"
+                    android:layout_height="24.dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16.dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/search" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12.dp"
+                    android:fontFamily="Roboto"
+                    android:gravity="center_vertical"
+                    android:text="Search courses.."
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="64.dp"
+            android:layout_height="64.dp"
+            android:layout_marginStart="16.dp"
+            app:cardCornerRadius="30.dp">
+
+            <ImageView
+                android:layout_width="32.dp"
+                android:layout_height="32.dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16.dp"
+
+                android:importantForAccessibility="no"
+                android:src="@drawable/funnel" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/sortview"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="24.dp"
+        android:layout_marginTop="16.dp"
+        android:layout_marginBottom="16.dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/sortTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12.dp"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:focusable="true"
+            android:fontFamily="Roboto"
+            android:gravity="center_vertical"
+            android:text="По дате добавления"
+            android:textColor="@color/brand_green"
+            android:textSize="18.sp"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="18sp"
+            android:layout_height="18sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8.dp"
+            android:layout_marginEnd="16.dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/sort" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16.dp"
+        android:paddingHorizontal="8.dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
