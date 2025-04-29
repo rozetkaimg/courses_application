@@ -1,6 +1,5 @@
 package com.rozetka.cources.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -27,10 +26,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView?.visibility = View.VISIBLE
+
         adapter = CourseAdapter { courseId, hasLike ->
             viewModel.hasLikeCourse(courseId, hasLike)
         }
@@ -46,13 +47,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         progressBar = view.findViewById(R.id.load_indic)
 
+
+        progressBar.visibility = View.VISIBLE
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.courses.collect { courses ->
-                    progressBar.visibility = if (courses.isEmpty()) View.GONE else View.VISIBLE
                     coursesList = courses
                     updateAdapter()
-
+                    progressBar.visibility = View.GONE
                 }
             }
         }
@@ -60,6 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun toggleSortOrder() {
         isSortedDescending = !isSortedDescending
+
         updateAdapter()
     }
 
@@ -72,16 +76,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter.submitList(sortedList)
     }
 
-    @SuppressLint("RepeatOnLifecycleWrongUsage")
-    override fun onResume() {
-        super.onResume()
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.courses.collect { courses ->
-                    progressBar.visibility = if (courses.isEmpty()) View.GONE else View.VISIBLE
-                }
-            }
-        }
-    }
 }
